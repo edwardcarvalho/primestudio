@@ -3,26 +3,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-type FormState = "idle" | "submitting" | "success" | "error";
-
-const services = [
-  "Website Profissional",
-  "Landing Page",
-  "SEO Técnico",
-  "Manutenção e Suporte",
-  "Outro",
-];
-
-const budgets = [
-  "Menos de €1.000",
-  "€1.000 – €3.000",
-  "€3.000 – €7.000",
-  "Mais de €7.000",
-  "Ainda não sei",
-];
+type FormState = "idle" | "submitting" | "success";
 
 export default function ContactForm() {
+  const { t } = useLanguage();
   const [state, setState] = useState<FormState>("idle");
   const [form, setForm] = useState({
     name: "",
@@ -33,6 +19,22 @@ export default function ContactForm() {
     message: "",
   });
 
+  const services = [
+    t.contact_form.service_websites,
+    t.contact_form.service_landing,
+    t.contact_form.service_seo,
+    t.contact_form.service_maintenance,
+    t.contact_form.service_other,
+  ];
+
+  const budgets = [
+    t.contact_form.budget_1,
+    t.contact_form.budget_2,
+    t.contact_form.budget_3,
+    t.contact_form.budget_4,
+    t.contact_form.budget_5,
+  ];
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -42,53 +44,60 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("submitting");
-    // Simulated submission — replace with real API call
     await new Promise((r) => setTimeout(r, 1500));
     setState("success");
   };
 
   if (state === "success") {
     return (
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           className="max-w-xl mx-auto px-6 text-center"
         >
-          <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
+          <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center mx-auto mb-5">
             <CheckCircle size={28} className="text-emerald-600" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Mensagem enviada!</h2>
-          <p className="text-gray-500">
-            Recebemos o seu pedido. Vamos analisar e responder em menos de 24 horas com uma
-            proposta personalizada.
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+            {t.contact_form.success_title}
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400">
+            {t.contact_form.success_text}
           </p>
         </motion.div>
       </section>
     );
   }
 
+  const inputClass =
+    "w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition";
+
+  const labelClass = "block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5";
+
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm space-y-6"
+          className="bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 shadow-sm space-y-6"
         >
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-1">Pedir orçamento</h2>
-            <p className="text-sm text-gray-400">
-              Preencha o formulário e receba uma proposta gratuita.
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              {t.contact_form.form_title}
+            </h2>
+            <p className="text-sm text-gray-400 dark:text-gray-500">
+              {t.contact_form.form_subtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                Nome <span className="text-red-500">*</span>
+              <label className={labelClass}>
+                {t.contact_form.name} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -96,13 +105,13 @@ export default function ContactForm() {
                 required
                 value={form.name}
                 onChange={handleChange}
-                placeholder="O seu nome"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                placeholder={t.contact_form.placeholder_name}
+                className={inputClass}
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                Email <span className="text-red-500">*</span>
+              <label className={labelClass}>
+                {t.contact_form.email} <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -110,68 +119,58 @@ export default function ContactForm() {
                 required
                 value={form.email}
                 onChange={handleChange}
-                placeholder="email@empresa.pt"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                placeholder={t.contact_form.placeholder_email}
+                className={inputClass}
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-              Empresa
-            </label>
+            <label className={labelClass}>{t.contact_form.company}</label>
             <input
               type="text"
               name="company"
               value={form.company}
               onChange={handleChange}
-              placeholder="Nome da sua empresa (opcional)"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              placeholder={t.contact_form.placeholder_company}
+              className={inputClass}
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                Serviço de interesse
-              </label>
+              <label className={labelClass}>{t.contact_form.service}</label>
               <select
                 name="service"
                 value={form.service}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white"
+                className={inputClass}
               >
-                <option value="">Seleccionar serviço</option>
+                <option value="">{t.contact_form.service_placeholder}</option>
                 {services.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
+                  <option key={s} value={s}>{s}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                Orçamento previsto
-              </label>
+              <label className={labelClass}>{t.contact_form.budget}</label>
               <select
                 name="budget"
                 value={form.budget}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white"
+                className={inputClass}
               >
-                <option value="">Seleccionar orçamento</option>
+                <option value="">{t.contact_form.budget_placeholder}</option>
                 {budgets.map((b) => (
-                  <option key={b} value={b}>
-                    {b}
-                  </option>
+                  <option key={b} value={b}>{b}</option>
                 ))}
               </select>
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-              Mensagem <span className="text-red-500">*</span>
+            <label className={labelClass}>
+              {t.contact_form.message} <span className="text-red-500">*</span>
             </label>
             <textarea
               name="message"
@@ -179,8 +178,8 @@ export default function ContactForm() {
               value={form.message}
               onChange={handleChange}
               rows={5}
-              placeholder="Descreva o seu projecto — o que precisa, qual o objectivo, prazo..."
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
+              placeholder={t.contact_form.placeholder_message}
+              className={`${inputClass} resize-none`}
             />
           </div>
 
@@ -192,19 +191,17 @@ export default function ContactForm() {
             {state === "submitting" ? (
               <>
                 <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                A enviar...
+                {t.contact_form.submitting}
               </>
             ) : (
               <>
-                Enviar pedido de orçamento
+                {t.contact_form.submit_full}
                 <ArrowRight size={16} />
               </>
             )}
           </button>
 
-          <p className="text-xs text-gray-400 text-center">
-            Os seus dados são tratados de forma confidencial. Não partilhamos informação com terceiros.
-          </p>
+          <p className="text-xs text-gray-400 text-center">{t.contact_form.privacy}</p>
         </motion.form>
       </div>
     </section>

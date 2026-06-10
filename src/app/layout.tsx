@@ -3,6 +3,9 @@ import { Inter, Gloock } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ThemeProvider from "@/components/ThemeProvider";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -81,11 +84,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt" className={`${inter.variable} ${gloock.variable}`}>
-      <body className="bg-white text-gray-900 antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+    <html lang="pt" className={`${inter.variable} ${gloock.variable}`} suppressHydrationWarning>
+      <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-white antialiased transition-colors duration-300">
+        <ThemeProvider>
+          <LanguageProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppButton />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

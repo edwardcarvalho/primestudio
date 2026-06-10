@@ -1,28 +1,33 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, ArrowRight } from "lucide-react";
 import Logo from "@/components/Logo";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const footerLinks = [
-  {
-    title: "Serviços",
-    links: [
-      { label: "Websites Profissionais", href: "/servicos#websites" },
-      { label: "Landing Pages", href: "/servicos#landing-pages" },
-      { label: "SEO Técnico", href: "/servicos#seo" },
-      { label: "Manutenção", href: "/servicos#manutencao" },
-    ],
-  },
-  {
-    title: "Empresa",
-    links: [
-      { label: "Sobre Nós", href: "/sobre" },
-      { label: "Portfólio", href: "/portfolio" },
-      { label: "Contacto", href: "/contacto" },
-    ],
-  },
-];
+function FooterInner() {
+  const { t } = useLanguage();
 
-export default function Footer() {
+  const footerLinks = [
+    {
+      title: t.nav.services,
+      links: [
+        { label: t.services.s1_title, href: "/servicos#websites" },
+        { label: t.services.s2_title, href: "/servicos#landing-pages" },
+        { label: t.services.s3_title, href: "/servicos#seo" },
+        { label: t.services.s4_title, href: "/servicos#manutencao" },
+      ],
+    },
+    {
+      title: "Prime Studio",
+      links: [
+        { label: t.nav.about, href: "/sobre" },
+        { label: t.nav.portfolio, href: "/portfolio" },
+        { label: t.nav.contact, href: "/contacto" },
+      ],
+    },
+  ];
+
   return (
     <footer className="bg-gray-950 text-gray-400">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-8">
@@ -32,14 +37,13 @@ export default function Footer() {
               <Logo dark size={34} asSpan />
             </div>
             <p className="text-sm leading-relaxed mb-6 max-w-xs">
-              Websites profissionais que transformam visitas em clientes. Ajudamos
-              empresas portuguesas a crescer online com presença digital de alto nível.
+              {t.footer.tagline}
             </p>
             <Link
               href="/contacto"
               className="inline-flex items-center gap-2 bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Pedir orçamento
+              {t.footer.cta_btn}
               <ArrowRight size={15} />
             </Link>
           </div>
@@ -65,7 +69,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs">
-            © {new Date().getFullYear()} Prime Studio. Todos os direitos reservados.
+            © {new Date().getFullYear()} Prime Studio. {t.footer.copyright}
           </p>
           <div className="flex items-center gap-4">
             <a
@@ -80,7 +84,6 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors text-xs font-semibold"
-              aria-label="LinkedIn"
             >
               LinkedIn
             </a>
@@ -89,7 +92,6 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors text-xs font-semibold"
-              aria-label="Instagram"
             >
               Instagram
             </a>
@@ -98,4 +100,8 @@ export default function Footer() {
       </div>
     </footer>
   );
+}
+
+export default function Footer() {
+  return <FooterInner />;
 }

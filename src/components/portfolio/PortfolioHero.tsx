@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function PortfolioHero() {
+  const { t } = useLanguage();
+
   return (
     <section className="pt-32 pb-16 bg-gray-950 border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -13,14 +16,13 @@ export default function PortfolioHero() {
           className="max-w-3xl"
         >
           <p className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-4">
-            Portfólio
+            {t.portfolio_page.label}
           </p>
           <h1 className="text-5xl font-bold text-white tracking-tight mb-5">
-            Projectos que geram resultados reais
+            {t.portfolio_page.h1}
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed">
-            Cada projecto começa com um objectivo de negócio claro. Veja como ajudamos
-            empresas portuguesas a crescer online.
+            {t.portfolio_page.subtitle}
           </p>
         </motion.div>
       </div>
