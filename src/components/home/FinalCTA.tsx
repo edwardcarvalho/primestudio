@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-const WA_NUMBER = "351900000000";
 
 export default function FinalCTA() {
   const { t } = useLanguage();
@@ -38,15 +36,6 @@ export default function FinalCTA() {
               {t.cta.btn_primary}
               <ArrowRight size={16} />
             </Link>
-            <a
-              href={`https://wa.me/${WA_NUMBER}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-emerald-500 text-white font-semibold px-7 py-4 rounded-xl hover:bg-emerald-600 transition-colors text-sm"
-            >
-              <MessageCircle size={16} />
-              {t.cta.btn_whatsapp}
-            </a>
           </div>
 
           <p className="text-xs text-gray-400 mt-6">{t.cta.note}</p>

@@ -73,7 +73,7 @@ function FooterInner() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="mailto:hello@primestudio.pt"
+              href="mailto:contacto@primestudio.pt"
               className="text-gray-400 hover:text-white transition-colors"
               aria-label="Email"
             >

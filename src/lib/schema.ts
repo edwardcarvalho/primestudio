@@ -23,7 +23,7 @@ export function generateOrganizationSchema() {
         contactPoint: {
           "@type": "ContactPoint",
           contactType: "customer service",
-          email: "hello@primestudio.pt",
+          email: "contacto@primestudio.pt",
           availableLanguage: ["Portuguese"],
         },
         sameAs: [

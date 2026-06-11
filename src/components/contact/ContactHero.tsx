@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, Mail, MessageCircle } from "lucide-react";
+import { Clock, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactHero() {
@@ -10,7 +10,6 @@ export default function ContactHero() {
   const infoItems = [
     { icon: Clock, title: t.contact_page.info_1_title, text: t.contact_page.info_1_text },
     { icon: Mail, title: t.contact_page.info_2_title, text: t.contact_page.info_2_text },
-    { icon: MessageCircle, title: t.contact_page.info_3_title, text: t.contact_page.info_3_text },
   ];
 
   return (
