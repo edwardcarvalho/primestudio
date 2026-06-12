@@ -15,7 +15,7 @@ const realProjects = [
   },
   {
     key: "p2" as const,
-    url: "https://portugalpratico.netlify.app/",
+    url: "https://portugalpratico.pt/",
     tags: ["Portal", "Next.js", "UX", "Conteúdo"],
     color: "from-emerald-600 to-teal-900",
     year: "2024",
