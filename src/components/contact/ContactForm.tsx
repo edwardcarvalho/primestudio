@@ -83,12 +83,12 @@ export default function ContactForm() {
     return (
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <p className="text-red-500 font-semibold mb-4">{t.contact_form.error_title ?? "Ocorreu um erro."}</p>
+          <p className="text-red-500 font-semibold mb-4">Ocorreu um erro ao enviar. Tenta novamente.</p>
           <button
             onClick={() => setState("idle")}
             className="text-sm text-blue-600 underline"
           >
-            {t.contact_form.try_again ?? "Tentar novamente"}
+            Tentar novamente
           </button>
         </div>
       </section>
