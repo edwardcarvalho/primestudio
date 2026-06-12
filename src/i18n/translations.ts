@@ -235,7 +235,7 @@ const pt: Translations = {
     label: "Portfólio",
     h2: "Resultados que falam por si",
     cta_all: "Ver todos os projectos",
-    p1_title: "Prime Stores",
+    p1_title: "Prime Estores",
     p1_category: "Website de Serviços",
     p1_desc:
       "Website profissional para empresa especializada em reparação e instalação de estores, persianas e instalações eléctricas. Presença digital clara que facilita o contacto com novos clientes.",
@@ -409,7 +409,7 @@ const en: Translations = {
     label: "Portfolio",
     h2: "Results that speak for themselves",
     cta_all: "View all projects",
-    p1_title: "Prime Stores",
+    p1_title: "Prime Estores",
     p1_category: "Services Website",
     p1_desc:
       "Professional website for a company specialised in repair and installation of blinds, shutters and electrical installations. Clear digital presence that makes it easy for new clients to get in touch.",
@@ -583,7 +583,7 @@ const es: Translations = {
     label: "Portfolio",
     h2: "Resultados que hablan por sí solos",
     cta_all: "Ver todos los proyectos",
-    p1_title: "Prime Stores",
+    p1_title: "Prime Estores",
     p1_category: "Sitio Web de Servicios",
     p1_desc:
       "Sitio web profesional para empresa especializada en reparación e instalación de persianas, estores e instalaciones eléctricas. Presencia digital clara que facilita el contacto con nuevos clientes.",
@@ -757,7 +757,7 @@ const fr: Translations = {
     label: "Portfolio",
     h2: "Des résultats qui parlent d'eux-mêmes",
     cta_all: "Voir tous les projets",
-    p1_title: "Prime Stores",
+    p1_title: "Prime Estores",
     p1_category: "Site Web de Services",
     p1_desc:
       "Site web professionnel pour une entreprise spécialisée dans la réparation et l'installation de stores, persiennes et installations électriques. Présence digitale claire qui facilite le contact avec de nouveaux clients.",
@@ -931,7 +931,7 @@ const it: Translations = {
     label: "Portfolio",
     h2: "Risultati che parlano da soli",
     cta_all: "Vedi tutti i progetti",
-    p1_title: "Prime Stores",
+    p1_title: "Prime Estores",
     p1_category: "Sito Web di Servizi",
     p1_desc:
       "Sito web professionale per un'azienda specializzata nella riparazione e installazione di tende, veneziane e impianti elettrici. Presenza digitale chiara che facilita il contatto con nuovi clienti.",
@@ -1105,7 +1105,7 @@ const de: Translations = {
     label: "Portfolio",
     h2: "Ergebnisse, die für sich sprechen",
     cta_all: "Alle Projekte ansehen",
-    p1_title: "Prime Stores",
+    p1_title: "Prime Estores",
     p1_category: "Dienstleistungs-Website",
     p1_desc:
       "Professionelle Website für ein Unternehmen, das auf Reparatur und Installation von Rollläden, Jalousien und Elektroinstallationen spezialisiert ist. Klare digitale Präsenz, die den Kontakt mit neuen Kunden erleichtert.",

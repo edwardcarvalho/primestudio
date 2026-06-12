@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-type FormState = "idle" | "submitting" | "success";
+type FormState = "idle" | "submitting" | "success" | "error";
 
 export default function ContactForm() {
   const { t } = useLanguage();
@@ -44,8 +44,17 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("submitting");
-    await new Promise((r) => setTimeout(r, 1500));
-    setState("success");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setState("success");
+    } catch {
+      setState("error");
+    }
   };
 
   if (state === "success") {
@@ -66,6 +75,22 @@ export default function ContactForm() {
             {t.contact_form.success_text}
           </p>
         </motion.div>
+      </section>
+    );
+  }
+
+  if (state === "error") {
+    return (
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-red-500 font-semibold mb-4">{t.contact_form.error_title ?? "Ocorreu um erro."}</p>
+          <button
+            onClick={() => setState("idle")}
+            className="text-sm text-blue-600 underline"
+          >
+            {t.contact_form.try_again ?? "Tentar novamente"}
+          </button>
+        </div>
       </section>
     );
   }
